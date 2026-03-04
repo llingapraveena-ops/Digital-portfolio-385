@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Registration Page</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 70%;
+            margin: 30px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .radio-group, .checkbox-group {
+            margin-bottom: 15px;
+        }
+
+        .radio-group input,
+        .checkbox-group input {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Web Development Workshop 2026</h1>
+    <p>Learn HTML & CSS and build beautiful websites!</p>
+</header>
+
+<div class="container">
+
+    <h2>Event Information</h2>
+    <p><strong>Date:</strong> 15 April 2026</p>
+    <p><strong>Time:</strong> 10:00 AM – 4:00 PM</p>
+    <p><strong>Venue:</strong> Computer Lab, ABC Engineering College</p>
+
+    <h2>Registration Form</h2>
+
+    <form>
+
+        <label>Full Name:</label>
+        <input type="text" placeholder="Enter your name" required>
+
+        <label>Email:</label>
+        <input type="email" placeholder="Enter your email" required>
+
+        <label>Phone Number:</label>
+        <input type="tel" placeholder="Enter your phone number" required>
+
+        <label>Date of Birth:</label>
+        <input type="date" required>
+
+        <label>Gender:</label>
+        <div class="radio-group">
+            <input type="radio" name="gender"> Male
+            <input type="radio" name="gender"> Female
+            <input type="radio" name="gender"> Other
+        </div>
+
+        <label>Select Event:</label>
+        <select>
+            <option>Web Development Workshop</option>
+            <option>UI/UX Design Workshop</option>
+            <option>Python Programming Workshop</option>
+        </select>
+
+        <label>Mode of Participation:</label>
+        <div class="radio-group">
+            <input type="radio" name="mode"> Online
+            <input type="radio" name="mode"> Offline
+        </div>
+
+        <label>Additional Requirements:</label>
+        <div class="checkbox-group">
+            <input type="checkbox"> Certificate Required
+            <input type="checkbox"> Study Materials Required
+        </div>
+
+        <label>Comments:</label>
+        <textarea rows="4" placeholder="Enter your comments"></textarea>
+
+        <label>
+            <input type="checkbox" required>
+            I declare that the above information is correct.
+        </label>
+
+        <br><br>
+
+        <button type="submit">Submit Registration</button>
+        <button type="reset">Reset</button>
+
+    </form>
+
+    <h2>Registered Participants</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Event</th>
+            <th>Mode</th>
+        </tr>
+        <tr>
+            <td>XYZ</td>
+            <td>xyz@gmail.com</td>
+            <td>9876543210</td>
+            <td>Web Development Workshop</td>
+            <td>Offline</td>
+        </tr>
+    </table>
+
+</div>
+
+<footer>
+    <p>Contact Email: events@abccollege.edu</p>
+    <p>Help Desk Number: +91 94444 12345</p>
+    <p>Support Timings: 9:00 AM – 4:30 PM (Working Days Only)</p>
+    <p>© 2026 Department of Computer Science, ABC Engineering College. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
