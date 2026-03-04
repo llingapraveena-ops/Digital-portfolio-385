@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Registration Page</title>
+
+    <style>
+        /* 3.1 Global Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e3f2fd, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0d47a1;
+            margin-top: 20px;
+        }
+
+        .description {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* 3.3 Event Info Section */
+        .event-info {
+            width: 80%;
+            margin: auto;
+            padding: 15px;
+            background-color: #bbdefb;
+            border-left: 5px solid #0d47a1;
+            border-radius: 8px;
+        }
+
+        /* 3.4 Form Card Layout */
+        .form-card {
+            width: 60%;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 3.5 Fieldset & Legend */
+        fieldset {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px solid #1976d2;
+            border-radius: 8px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #0d47a1;
+            padding: 5px 10px;
+        }
+
+        /* 3.6 Input Styling */
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #1976d2;
+            outline: none;
+            box-shadow: 0 0 5px #1976d2;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        /* 3.7 Button Styling */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .submit-btn {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #0d47a1;
+        }
+
+        .reset-btn {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background-color: #b71c1c;
+        }
+
+        /* 3.8 Table Styling */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #555;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #bbdefb;
+        }
+
+        /* 3.9 Declaration */
+        .declaration {
+            margin-top: 15px;
+        }
+
+        /* 3.10 Footer */
+        footer {
+            background-color: #0d47a1;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 3.2 Event Title & Description -->
+    <h1>Front-End Development Workshop</h1>
+    <p class="description">
+        Join our interactive workshop to enhance your HTML and CSS skills.
+    </p>
+
+    <!-- 3.3 Event Information Section -->
+    <div class="event-info">
+        <p><strong>Date:</strong> 20 March 2026</p>
+        <p><strong>Venue:</strong> Computer Lab - 1</p>
+        <p><strong>Time:</strong> 10:00 AM – 4:00 PM</p>
+    </div>
+
+    <!-- 3.4 Registration Form -->
+    <div class="form-card">
+        <form>
+
+            <fieldset>
+                <legend>Personal Details</legend>
+
+                Name:
+                <input type="text" placeholder="Enter your name">
+
+                Email:
+                <input type="email" placeholder="Enter your email">
+
+                Department:
+                <select>
+                    <option>BCA</option>
+                    <option>B.Sc CS</option>
+                    <option>B.Com</option>
+                </select>
+
+                Date of Birth:
+                <input type="date">
+            </fieldset>
+
+            <fieldset>
+                <legend>Preferences</legend>
+
+                Gender:
+                <input type="radio" name="gender"> Male
+                <input type="radio" name="gender"> Female
+                <br><br>
+
+                Skills:
+                <input type="checkbox"> HTML
+                <input type="checkbox"> CSS
+                <input type="checkbox"> JavaScript
+                <br><br>
+
+                Upload ID Proof:
+                <input type="file">
+
+                Comments:
+                <textarea rows="4"></textarea>
+            </fieldset>
+
+            <!-- 3.9 Declaration -->
+            <div class="declaration">
+                <input type="checkbox"> I declare that the above information is true.
+            </div>
+
+            <br>
+
+            <!-- 3.7 Buttons -->
+            <button type="submit" class="btn submit-btn">Submit</button>
+            <button type="reset" class="btn reset-btn">Reset</button>
+
+        </form>
+    </div>
+
+    <!-- 3.8 Participants Table -->
+    <h2 style="text-align:center;">Registered Participants</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td>Kaviya</td>
+            <td>BCA</td>
+            <td>kaviya@email.com</td>
+        </tr>
+        <tr>
+            <td>Priya</td>
+            <td>B.Sc CS</td>
+            <td>priya@email.com</td>
+        </tr>
+    </table>
+
+    <!-- 3.10 Footer -->
+    <footer>
+        Contact Email: llingapraveena@gmail.com <br>
+        Help Desk Number: +91 8608215042 <br>
+        Support Timings: 9:00 AM – 4:30 PM (Working Days Only)
+    </footer>
+
+</body>
+</html>
