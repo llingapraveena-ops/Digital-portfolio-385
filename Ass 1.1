@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Registration Form</title>
+<style>
+    body{
+        background:#111;
+        font-family: Arial, Helvetica, sans-serif;
+        color:white;
+    }
+
+    .container{
+        width:700px;
+        margin:40px auto;
+        border:1px solid #555;
+        padding:20px;
+        background:#000;
+        box-shadow:0 0 10px #444;
+    }
+
+    h1,h2{
+        text-align:left;
+        margin-bottom:10px;
+    }
+
+    .event-info p{
+        margin:4px 0;
+        font-weight:bold;
+    }
+
+    .form-group{
+        display:flex;
+        align-items:center;
+        margin:10px 0;
+    }
+
+    .form-group label{
+        width:220px;
+        font-weight:bold;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group select{
+        width:100%;
+        padding:6px;
+        background:#111;
+        border:1px solid #666;
+        color:white;
+    }
+
+    .radio-group{
+        display:flex;
+        gap:20px;
+    }
+
+    .checkbox{
+        margin-top:10px;
+    }
+
+    .buttons{
+        margin-top:15px;
+    }
+
+    .buttons input{
+        padding:8px 20px;
+        margin-right:10px;
+        background:#222;
+        color:white;
+        border:1px solid #777;
+        cursor:pointer;
+    }
+
+    .buttons input:hover{
+        background:#444;
+    }
+
+    .footer{
+        margin-top:20px;
+        border-top:1px solid #555;
+        padding-top:10px;
+        font-size:14px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Event Information</h1>
+
+    <div class="event-info">
+        <p>Date: 26 February 2026</p>
+        <p>Time: 10:00 AM – 4:00 PM</p>
+        <p>Venue: College Seminar Hall</p>
+        <p>Organizer: Department of Computer Applications</p>
+    </div>
+
+    <h2>Registration Form</h2>
+
+    <form>
+
+        <div class="form-group">
+            <label>Full Name:</label>
+            <input type="text" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number:</label>
+            <input type="tel" required>
+        </div>
+
+        <div class="form-group">
+            <label>Gender:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="gender"> Male</label>
+                <label><input type="radio" name="gender"> Female</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Workshop Topic:</label>
+            <select>
+                <option>HTML Basics</option>
+                <option>CSS Fundamentals</option>
+                <option>JavaScript Essentials</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Mode of Participation:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="mode"> Online</label>
+                <label><input type="radio" name="mode"> Offline</label>
+            </div>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> I confirm that the details are correct.
+            </label>
+        </div>
+
+        <div class="buttons">
+            <input type="submit" value="Register">
+            <input type="reset" value="Clear">
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <p>Contact Email: synapse2026@college.edu</p>
+        <p>Help Desk: +91 8637410729</p>
+        <p>© 2026 Synapse Workshop</p>
+    </div>
+
+</div>
+
+</body>
+</html>
