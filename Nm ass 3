@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Registration Form</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+}
+
+.container{
+    width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px gray;
+}
+
+h2{
+    text-align: center;
+}
+
+label{
+    font-weight: bold;
+}
+
+input, select{
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button{
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #0056b3;
+}
+
+.error{
+    color: red;
+    font-size: 14px;
+}
+</style>
+
+<script>
+function validateForm(){
+
+    let name = document.forms["eventForm"]["name"].value;
+    let email = document.forms["eventForm"]["email"].value;
+    let phone = document.forms["eventForm"]["phone"].value;
+    let event = document.forms["eventForm"]["event"].value;
+
+    if(name == ""){
+        alert("Name must be filled out");
+        return false;
+    }
+
+    if(email == ""){
+        alert("Email must be filled out");
+        return false;
+    }
+
+    if(phone.length != 10){
+        alert("Phone number must be 10 digits");
+        return false;
+    }
+
+    if(event == ""){
+        alert("Please select an event");
+        return false;
+    }
+
+    alert("Registration Successful!");
+    return true;
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Event Registration Form</h2>
+
+<form name="eventForm" onsubmit="return validateForm()">
+
+<label>Full Name</label>
+<input type="text" name="name" placeholder="Enter your name">
+
+<label>Email</label>
+<input type="email" name="email" placeholder="Enter your email">
+
+<label>Phone Number</label>
+<input type="number" name="phone" placeholder="Enter your phone number">
+
+<label>Select Event</label>
+<select name="event">
+<option value="">--Select Event--</option>
+<option value="Workshop">Workshop</option>
+<option value="Seminar">Seminar</option>
+<option value="Conference">Conference</option>
+</select>
+
+<label>Gender</label><br>
+<input type="radio" name="gender"> Male
+<input type="radio" name="gender"> Female
+<br><br>
+
+<label>Skills</label><br>
+<input type="checkbox"> HTML
+<input type="checkbox"> CSS
+<input type="checkbox"> JavaScript
+<br><br>
+
+<button type="submit">Register</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
