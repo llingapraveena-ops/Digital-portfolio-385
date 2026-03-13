@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Real-Time Notification Widget</title>
+
+<style>
+body{
+font-family: Arial;
+background:#f4f4f4;
+text-align:center;
+padding:50px;
+}
+
+.notification{
+position:relative;
+display:inline-block;
+cursor:pointer;
+}
+
+.bell{
+font-size:30px;
+}
+
+.count{
+position:absolute;
+top:-10px;
+right:-10px;
+background:red;
+color:white;
+border-radius:50%;
+padding:5px 8px;
+font-size:12px;
+}
+
+.panel{
+display:none;
+width:250px;
+background:white;
+border:1px solid #ccc;
+position:absolute;
+top:40px;
+right:0;
+text-align:left;
+box-shadow:0px 0px 5px gray;
+}
+
+.panel h3{
+margin:0;
+padding:10px;
+background:#007BFF;
+color:white;
+}
+
+.panel ul{
+list-style:none;
+padding:10px;
+margin:0;
+max-height:200px;
+overflow-y:auto;
+}
+
+.panel ul li{
+padding:5px;
+border-bottom:1px solid #ddd;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Real-Time Notification Widget</h2>
+
+<div class="notification" onclick="togglePanel()">
+
+<span class="bell">🔔</span>
+<span class="count" id="count">0</span>
+
+<div class="panel" id="panel">
+<h3>Notifications</h3>
+<ul id="list"></ul>
+</div>
+
+</div>
+
+<script>
+
+let count=0;
+
+function togglePanel(){
+let panel=document.getElementById("panel");
+
+if(panel.style.display==="block")
+panel.style.display="none";
+else
+panel.style.display="block";
+}
+
+function addNotification(){
+
+let messages=[
+"New message received",
+"New event added",
+"Reminder: Meeting at 4 PM",
+"System update available",
+"Friend sent a request"
+];
+
+let msg=messages[Math.floor(Math.random()*messages.length)];
+
+let li=document.createElement("li");
+li.innerText=msg;
+
+document.getElementById("list").prepend(li);
+
+count++;
+document.getElementById("count").innerText=count;
+
+}
+
+setInterval(addNotification,5000);
+
+</script>
+
+</body>
+</html>
