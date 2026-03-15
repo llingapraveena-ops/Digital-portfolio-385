@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live Search Filtering</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.container{
+    width: 400px;
+    margin: 50px auto;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+li{
+    background: white;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+<h2>Live Search</h2>
+
+<input type="text" id="searchBar" placeholder="Search items..." onkeyup="searchItem()">
+
+<ul id="itemList">
+<li>Apple</li>
+<li>Banana</li>
+<li>Mango</li>
+<li>Orange</li>
+<li>Grapes</li>
+<li>Pineapple</li>
+<li>Watermelon</li>
+<li>Strawberry</li>
+</ul>
+
+</div>
+
+<script>
+
+function searchItem(){
+
+let input = document.getElementById("searchBar").value.toLowerCase();
+let items = document.getElementById("itemList").getElementsByTagName("li");
+
+for(let i = 0; i < items.length; i++){
+
+let text = items[i].textContent.toLowerCase();
+
+if(text.includes(input)){
+items[i].style.display = "";
+}
+else{
+items[i].style.display = "none";
+}
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
