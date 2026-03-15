@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Real-Time Notification Widget</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background:#f4f4f4;
+display:flex;
+justify-content:center;
+margin-top:50px;
+}
+
+.notification-box{
+width:300px;
+background:white;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+padding:15px;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+.badge{
+background:red;
+color:white;
+padding:5px 10px;
+border-radius:50%;
+font-size:14px;
+}
+
+ul{
+list-style:none;
+padding:0;
+}
+
+li{
+background:#eee;
+margin:5px 0;
+padding:8px;
+border-radius:5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="notification-box">
+
+<div class="header">
+<h3>Notifications</h3>
+<span id="count" class="badge">0</span>
+</div>
+
+<ul id="notificationList">
+</ul>
+
+</div>
+
+<script>
+
+let notifications = [
+"Welcome to the website!",
+"Your profile was updated",
+"New message received"
+];
+
+let count = 0;
+
+function addNotification(){
+
+let list = document.getElementById("notificationList");
+let badge = document.getElementById("count");
+
+let message = notifications[Math.floor(Math.random()*notifications.length)];
+
+let li = document.createElement("li");
+li.textContent = message;
+
+list.prepend(li);
+
+count++;
+badge.textContent = count;
+
+}
+
+setInterval(addNotification,3000);
+
+</script>
+
+</body>
+</html>
