@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online Quiz</title>
+
+<style>
+body{
+font-family: Arial;
+background:#f2f2f2;
+text-align:center;
+}
+
+.quiz-container{
+width:400px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+button{
+padding:10px 20px;
+margin-top:15px;
+background:blue;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:darkblue;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+<h2>Online Quiz</h2>
+
+<div id="question"></div>
+
+<div id="options"></div>
+
+<button onclick="nextQuestion()">Next</button>
+
+<h3 id="result"></h3>
+</div>
+
+<script>
+
+const quiz = [
+{
+question:"What does HTML stand for?",
+options:["Hyper Text Markup Language","High Text Machine Language","Hyperlinks Text Mark Language","Home Tool Markup Language"],
+answer:0
+},
+{
+question:"Which language is used for styling web pages?",
+options:["HTML","JQuery","CSS","XML"],
+answer:2
+},
+{
+question:"Which language is used for web development?",
+options:["Python","Java","JavaScript","All of the above"],
+answer:3
+}
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+function loadQuestion(){
+let q = quiz[currentQuestion];
+document.getElementById("question").innerHTML = q.question;
+
+let optionsHTML = "";
+for(let i=0;i<q.options.length;i++){
+optionsHTML += `<input type="radio" name="option" value="${i}"> ${q.options[i]} <br>`;
+}
+
+document.getElementById("options").innerHTML = optionsHTML;
+}
+
+function nextQuestion(){
+
+let selected = document.querySelector('input[name="option"]:checked');
+
+if(!selected){
+alert("Please select an answer");
+return;
+}
+
+if(selected.value == quiz[currentQuestion].answer){
+score++;
+}
+
+currentQuestion++;
+
+if(currentQuestion < quiz.length){
+loadQuestion();
+}
+else{
+document.getElementById("question").innerHTML = "Quiz Completed!";
+document.getElementById("options").innerHTML = "";
+document.getElementById("result").innerHTML = "Your Score: " + score + "/" + quiz.length;
+}
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
