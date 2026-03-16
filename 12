@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News Feed Dashboard</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background:#f4f4f4;
+margin:0;
+padding:0;
+}
+
+h1{
+text-align:center;
+padding:20px;
+background:#333;
+color:white;
+}
+
+#news-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+border-radius:8px;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+overflow:hidden;
+}
+
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
+}
+
+.card-content{
+padding:15px;
+}
+
+.card-content h3{
+margin:0 0 10px;
+font-size:18px;
+}
+
+.card-content p{
+font-size:14px;
+color:#555;
+}
+
+.card-content a{
+display:inline-block;
+margin-top:10px;
+padding:8px 12px;
+background:#007BFF;
+color:white;
+text-decoration:none;
+border-radius:4px;
+}
+
+.card-content a:hover{
+background:#0056b3;
+}
+</style>
+
+</head>
+<body>
+
+<h1>News Feed Dashboard</h1>
+
+<div id="news-container"></div>
+
+<script>
+
+const apiURL="https://newsapi.org/v2/top-headlines?country=us&apiKey=YOUR_API_KEY";
+
+fetch(apiURL)
+.then(response=>response.json())
+.then(data=>{
+
+const container=document.getElementById("news-container");
+
+data.articles.forEach(article=>{
+
+const card=document.createElement("div");
+card.classList.add("card");
+
+card.innerHTML=`
+<img src="${article.urlToImage || 'https://via.placeholder.com/300'}">
+<div class="card-content">
+<h3>${article.title}</h3>
+<p>${article.description || "No description available."}</p>
+<a href="${article.url}" target="_blank">Read More</a>
+</div>
+`;
+
+container.appendChild(card);
+
+});
+
+})
+.catch(error=>{
+console.log("Error fetching news:",error);
+});
+
+</script>
+
+</body>
+</html>
