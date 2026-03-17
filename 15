@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Calendar UI</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .calendar {
+        width: 350px;
+        background: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header button {
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .days, .dates {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .days div {
+        font-weight: bold;
+    }
+
+    .dates div {
+        padding: 10px;
+        margin: 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .dates div:hover {
+        background: #ddd;
+    }
+
+    .event {
+        background: #4CAF50;
+        color: white;
+    }
+
+    .today {
+        border: 2px solid #2196F3;
+    }
+
+    .event-details {
+        margin-top: 15px;
+        padding: 10px;
+        background: #eee;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="calendar">
+    <div class="header">
+        <button onclick="prevMonth()">◀</button>
+        <h3 id="monthYear"></h3>
+        <button onclick="nextMonth()">▶</button>
+    </div>
+
+    <div class="days">
+        <div>Sun</div><div>Mon</div><div>Tue</div>
+        <div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+    </div>
+
+    <div class="dates" id="dates"></div>
+
+    <div class="event-details" id="eventDetails">
+        Click a date to see events
+    </div>
+</div>
+
+<script>
+    const datesContainer = document.getElementById("dates");
+    const monthYear = document.getElementById("monthYear");
+    const eventDetails = document.getElementById("eventDetails");
+
+    let currentDate = new Date();
+
+    // Sample events
+    const events = {
+        "2026-03-10": ["Meeting with team"],
+        "2026-03-15": ["Project submission"],
+        "2026-03-20": ["Birthday Party"]
+    };
+
+    function renderCalendar() {
+        datesContainer.innerHTML = "";
+
+        let year = currentDate.getFullYear();
+        let month = currentDate.getMonth();
+
+        let firstDay = new Date(year, month, 1).getDay();
+        let lastDate = new Date(year, month + 1, 0).getDate();
+
+        monthYear.innerText = currentDate.toLocaleString("default", {
+            month: "long",
+            year: "numeric"
+        });
+
+        // Empty slots
+        for (let i = 0; i < firstDay; i++) {
+            datesContainer.innerHTML += "<div></div>";
+        }
+
+        for (let day = 1; day <= lastDate; day++) {
+            let dateDiv = document.createElement("div");
+            dateDiv.innerText = day;
+
+            let fullDate = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+
+            // Highlight today
+            let today = new Date();
+            if (day === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear()) {
+                dateDiv.classList.add("today");
+            }
+
+            // Highlight events
+            if (events[fullDate]) {
+                dateDiv.classList.add("event");
+            }
+
+            dateDiv.onclick = () => showEvents(fullDate);
+
+            datesContainer.appendChild(dateDiv);
+        }
+    }
+
+    function showEvents(date) {
+        if (events[date]) {
+            eventDetails.innerHTML = `<strong>Events on ${date}:</strong><br>` +
+                events[date].join("<br>");
+        } else {
+            eventDetails.innerHTML = "No events for this date";
+        }
+    }
+
+    function prevMonth() {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+    }
+
+    function nextMonth() {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    }
+
+    renderCalendar();
+</script>
+
+</body>
+</html>
