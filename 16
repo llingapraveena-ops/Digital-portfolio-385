@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Multi-Step Form Wizard</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: #fff;
+        padding: 20px;
+        width: 350px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .step {
+        display: none;
+    }
+
+    .step.active {
+        display: block;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background: #007BFF;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:disabled {
+        background: #ccc;
+    }
+
+    .error {
+        color: red;
+        font-size: 12px;
+    }
+
+    .progress {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    .progress div {
+        width: 30%;
+        height: 5px;
+        background: #ccc;
+        border-radius: 5px;
+    }
+
+    .progress .active {
+        background: #007BFF;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Multi-Step Form</h2>
+
+    <!-- Progress Bar -->
+    <div class="progress">
+        <div id="p1" class="active"></div>
+        <div id="p2"></div>
+        <div id="p3"></div>
+    </div>
+
+    <form id="form">
+
+        <!-- Step 1 -->
+        <div class="step active">
+            <h3>Personal Info</h3>
+            <input type="text" id="name" placeholder="Enter Name">
+            <div class="error" id="nameError"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step">
+            <h3>Contact Info</h3>
+            <input type="email" id="email" placeholder="Enter Email">
+            <div class="error" id="emailError"></div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step">
+            <h3>Confirm</h3>
+            <p id="summary"></p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)" disabled>Previous</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+let currentStep = 0;
+const steps = document.getElementsByClassName("step");
+
+function showStep(n) {
+    for (let i = 0; i < steps.length; i++) {
+        steps[i].classList.remove("active");
+    }
+    steps[n].classList.add("active");
+
+    document.getElementById("prevBtn").disabled = (n === 0);
+
+    if (n === steps.length - 1) {
+        document.getElementById("nextBtn").innerText = "Submit";
+        showSummary();
+    } else {
+        document.getElementById("nextBtn").innerText = "Next";
+    }
+
+    updateProgress(n);
+}
+
+function nextPrev(n) {
+    if (n === 1 && !validateForm()) return;
+
+    currentStep += n;
+
+    if (currentStep >= steps.length) {
+        alert("Form Submitted Successfully!");
+        document.getElementById("form").reset();
+        currentStep = 0;
+    }
+
+    showStep(currentStep);
+}
+
+function validateForm() {
+    let valid = true;
+
+    if (currentStep === 0) {
+        let name = document.getElementById("name").value;
+        if (name === "") {
+            document.getElementById("nameError").innerText = "Name is required";
+            valid = false;
+        } else {
+            document.getElementById("nameError").innerText = "";
+        }
+    }
+
+    if (currentStep === 1) {
+        let email = document.getElementById("email").value;
+        if (email === "" || !email.includes("@")) {
+            document.getElementById("emailError").innerText = "Valid email required";
+            valid = false;
+        } else {
+            document.getElementById("emailError").innerText = "";
+        }
+    }
+
+    return valid;
+}
+
+function updateProgress(n) {
+    for (let i = 1; i <= 3; i++) {
+        document.getElementById("p" + i).classList.remove("active");
+    }
+    for (let i = 1; i <= n + 1; i++) {
+        document.getElementById("p" + i).classList.add("active");
+    }
+}
+
+function showSummary() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+
+    document.getElementById("summary").innerHTML =
+        "<b>Name:</b> " + name + "<br><b>Email:</b> " + email;
+}
+</script>
+
+</body>
+</html>
