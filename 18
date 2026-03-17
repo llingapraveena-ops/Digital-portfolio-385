@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background: #f4f6f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover {
+            background: #34495e;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .notifications ul, .news ul {
+            list-style: none;
+        }
+
+        .notifications li, .news li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li>Home</li>
+            <li>Profile</li>
+            <li>Marks</li>
+            <li>Attendance</li>
+            <li>Settings</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="header">
+            <h2>Welcome, Student 👋</h2>
+        </div>
+
+        <div class="dashboard">
+
+            <!-- Chart Section -->
+            <div class="card">
+                <h3>Performance Chart</h3>
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <!-- Notifications -->
+            <div class="card notifications">
+                <h3>Notifications 🔔</h3>
+                <ul id="notificationList"></ul>
+            </div>
+
+            <!-- News -->
+            <div class="card news" style="grid-column: span 2;">
+                <h3>Latest News 📰</h3>
+                <ul id="newsList"></ul>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Chart Data
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Math', 'Science', 'English', 'History', 'Computer'],
+                datasets: [{
+                    label: 'Marks',
+                    data: [85, 90, 78, 88, 95],
+                    backgroundColor: [
+                        '#3498db',
+                        '#2ecc71',
+                        '#f1c40f',
+                        '#e67e22',
+                        '#9b59b6'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Notifications Data
+        const notifications = [
+            "Assignment 3 due tomorrow",
+            "Exam starts next week",
+            "Project submission deadline extended",
+            "New course materials uploaded"
+        ];
+
+        const notificationList = document.getElementById("notificationList");
+
+        notifications.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            notificationList.appendChild(li);
+        });
+
+        // News Data
+        const news = [
+            "College fest starts next month",
+            "Guest lecture on AI this Friday",
+            "Scholarship applications are open",
+            "New library resources available"
+        ];
+
+        const newsList = document.getElementById("newsList");
+
+        news.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            newsList.appendChild(li);
+        });
+    </script>
+
+</body>
+</html>
