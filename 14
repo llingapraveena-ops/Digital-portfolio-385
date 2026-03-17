@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Expand/Collapse</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .faq-container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .faq-item {
+            background: #fff;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            background: #007BFF;
+            color: white;
+        }
+
+        .faq-answer {
+            padding: 15px;
+            display: none;
+            background: #fafafa;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-question:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="faq-container">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">What is HTML?</div>
+            <div class="faq-answer">HTML stands for HyperText Markup Language used to structure web pages.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What is CSS?</div>
+            <div class="faq-answer">CSS is used to style and design web pages.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What is JavaScript?</div>
+            <div class="faq-answer">JavaScript adds interactivity to web pages.</div>
+        </div>
+
+    </div>
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
